@@ -403,6 +403,8 @@ class VisionEncoderDecoderModel(PreTrainedModel):
     def forward(
         self,
         pixel_values=None,
+        # HACK: metadata
+        metadata=None,
         decoder_input_ids=None,
         decoder_attention_mask=None,
         encoder_outputs=None,
@@ -462,6 +464,7 @@ class VisionEncoderDecoderModel(PreTrainedModel):
 
             encoder_outputs = self.encoder(
                 pixel_values,
+                metadata,
                 output_attentions=output_attentions,
                 output_hidden_states=output_hidden_states,
                 return_dict=return_dict,
