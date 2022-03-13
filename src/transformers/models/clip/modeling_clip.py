@@ -782,12 +782,12 @@ class CLIPVisionTransformer(nn.Module):
 
 
 class CLIPVisionModel(CLIPPreTrainedModel):
-    config_class = CLIPVisionConfig
+    config_class = CLIPConfig
     main_input_name = "pixel_values"
 
-    def __init__(self, config: CLIPVisionConfig):
-        super().__init__(config)
-        self.vision_model = CLIPVisionTransformer(config)
+    def __init__(self, config: CLIPConfig):
+        super().__init__(config.vision_config)
+        self.vision_model = CLIPVisionTransformer(config.vision_config)
         # Initialize weights and apply final processing
         self.post_init()
 
